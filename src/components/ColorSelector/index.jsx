@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {colorsData} from '../../data';
 
 const ColorSelector = () => {

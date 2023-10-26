@@ -1,4 +1,3 @@
-import React from 'react';
 import './style.css';
 
 import eyesImg from '../../img/eyes2.svg';

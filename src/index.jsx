@@ -1,6 +1,6 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
+
 import Emoticon from './components/Emoticon';
 import Configurator from './components/Configurator';
 
