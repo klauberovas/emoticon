@@ -1,16 +1,30 @@
 import './style.css';
+import { useMemo } from 'react';
+import { useSettings } from '../../setting-context';
+import { eyesData, mouthData, colorsData } from '../../../src/data';
 
-import eyesImg from '../../img/eyes2.svg';
-import mouthImg from '../../img/mouth2.svg';
+const Emoticon: React.FC = () => {
+  const { eyes, mouth, color } = useSettings();
 
-const Emoticon:React.FC = () => {
+  const handleEyes = useMemo(
+    () => eyesData.find((item) => item.id === eyes)?.image,
+    [eyes],
+  );
+  const handleMouth = useMemo(
+    () => mouthData.find((item) => item.id === mouth)?.image,
+    [mouth],
+  );
+  const handleColor = useMemo(
+    () => colorsData.find((item) => item.id === color)?.value,
+    [color],
+  );
 
-	return (
-		<div className='emoticon' style={{ backgroundColor: '#ff2e12' }}>
-			<img className="emoticon__eyes" src={eyesImg} />
-			<img className="emoticon__mouth" src={mouthImg} />
-		</div>
-	);
-}
+  return (
+    <div className="emoticon" style={{ backgroundColor: handleColor }}>
+      <img className="emoticon__eyes" src={handleEyes} />
+      <img className="emoticon__mouth" src={handleMouth} />
+    </div>
+  );
+};
 
 export default Emoticon;
