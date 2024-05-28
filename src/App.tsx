@@ -10,9 +10,13 @@ const App = () => {
     color: 3,
   });
 
+  const changeId = (value: string, id: number) => {
+    setSettings((prevSettings) => ({ ...prevSettings, [value]: id }));
+  };
+
   return (
     <div className="container">
-      <SettingContext.Provider value={settings}>
+      <SettingContext.Provider value={{ ...settings, changeId }}>
         <header>
           <h1>Vytvoř si vlastní emotikon</h1>
         </header>

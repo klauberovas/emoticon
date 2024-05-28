@@ -1,23 +1,27 @@
-import {mouthData, Mouth} from '../../data';
+import { mouthData, Mouth } from '../../data';
+import { useSettings } from '../../setting-context';
 
-const MouthSelector:React.FC = () => {
+const MouthSelector: React.FC = () => {
+  const { mouth, changeId } = useSettings();
 
-	const handleClick = (item:Mouth) => {
-		console.log('mouth', item.id);
-	}
+  const handleClick = (item: Mouth) => {
+    changeId('mouth', item.id);
+  };
 
-	return (
-		<div className="items">
-			{mouthData.map(mouth =>
-				<img
-					className='item'
-					key={mouth.id}
-					src={mouth.image}
-					onClick={() => { handleClick(mouth) }}
-					/>
-			)}
-		</div>
-	);
-}
+  return (
+    <div className="items">
+      {mouthData.map((item) => (
+        <img
+          className={item.id === mouth ? 'item active' : 'item'}
+          key={item.id}
+          src={item.image}
+          onClick={() => {
+            handleClick(item);
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default MouthSelector;
