@@ -1,23 +1,27 @@
-import {eyesData, Eyes} from '../../data';
+import { eyesData, Eyes } from '../../data';
+import { useSettings } from '../../setting-context';
 
-const EyesSelector:React.FC = () => {
+const EyesSelector: React.FC = () => {
+  const { eyes, changeId } = useSettings();
 
-	const handleClick = (item:Eyes) => {
-		console.log('eyes', item.id);
-	}
+  const handleClick = (item: Eyes) => {
+    changeId('eyes', item.id);
+  };
 
-	return (
-		<div className="items">
-			{eyesData.map(eyes =>
-				<img
-					className='item'
-					key={eyes.id}
-					src={eyes.image}
-					onClick={() => { handleClick(eyes) }}
-					/>
-			)}
-		</div>
-	);
-}
+  return (
+    <div className="items">
+      {eyesData.map((eye) => (
+        <img
+          className={eye.id === eyes ? 'item active' : 'item'}
+          key={eye.id}
+          src={eye.image}
+          onClick={() => {
+            handleClick(eye);
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default EyesSelector;
